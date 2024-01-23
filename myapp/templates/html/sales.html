@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sales.css') }}">
+    <title>京都観光レコメンド</title>
+    <style></style>
+</head>
+<body>
+    <div class="header">
+        <h1>京都府観光レコメンドシステム</h1>
+
+        <nav>
+            <ol>
+                <a href="https://muds.gdl.jp/s2022072/">TOP</a>
+                <a href="https://muds.gdl.jp/s2022072/yorimiti">寄り道を探す</a>
+                <a href="https://muds.gdl.jp/s2022072/route">最短ルートを探す</a>
+            </ol>
+        </nav>
+    </div>
+
+    <h2>最短ルートを探す</h2>
+    <form class="form" action="https://muds.gdl.jp/s2022072/route" method="POST">
+        <label for="spots">・観光地1</label>
+        <select class="form__select" name="spots">
+            <option value="None">選んでください</option>
+            <option value="鹿苑寺（金閣寺）">鹿苑寺（金閣寺）</option>
+            <option value="南禅寺">南禅寺</option>  
+            <option value="鞍馬寺">鞍馬寺</option>  
+            <option value="慈照寺（銀閣寺）">慈照寺（銀閣寺）</option>  
+            <option value="清水寺">清水寺</option>
+            <option value="八坂神社">八坂神社</option>
+            <option value="本願寺（西本願寺）">本願寺（西本願寺）</option>  
+            <option value="天龍寺">天龍寺</option>  
+            <option value="西芳寺（苔寺）">西芳寺（苔寺）</option>  
+            <option value="宇治上神社">宇治上神社</option> 
+        </select>
+        <label for="spots">・観光地2</label>
+        <select class="form__select" name="spots">
+            <option value="None">選んでください</option>
+            <option value="鹿苑寺（金閣寺）">鹿苑寺（金閣寺）</option>
+            <option value="南禅寺">南禅寺</option>  
+            <option value="鞍馬寺">鞍馬寺</option>  
+            <option value="慈照寺（銀閣寺）">慈照寺（銀閣寺）</option>  
+            <option value="清水寺">清水寺</option>
+            <option value="八坂神社">八坂神社</option>
+            <option value="本願寺（西本願寺）">本願寺（西本願寺）</option>  
+            <option value="天龍寺">天龍寺</option>  
+            <option value="西芳寺（苔寺）">西芳寺（苔寺）</option>  
+            <option value="宇治上神社">宇治上神社</option> 
+        </select>
+        <label for="spots">・観光地3</label>
+        <select class="form__select" name="spots">
+            <option value="None">選んでください</option>
+            <option value="鹿苑寺（金閣寺）">鹿苑寺（金閣寺）</option>
+            <option value="南禅寺">南禅寺</option>  
+            <option value="鞍馬寺">鞍馬寺</option>  
+            <option value="慈照寺（銀閣寺）">慈照寺（銀閣寺）</option>  
+            <option value="清水寺">清水寺</option>
+            <option value="八坂神社">八坂神社</option>
+            <option value="本願寺（西本願寺）">本願寺（西本願寺）</option>  
+            <option value="天龍寺">天龍寺</option>  
+            <option value="西芳寺（苔寺）">西芳寺（苔寺）</option>  
+            <option value="宇治上神社">宇治上神社</option> 
+        </select>
+        <label for="spots">・観光地4</label>
+        <select class="form__select" name="spots">
+            <option value="None">選んでください</option>
+            <option value="鹿苑寺（金閣寺）">鹿苑寺（金閣寺）</option>
+            <option value="南禅寺">南禅寺</option>  
+            <option value="鞍馬寺">鞍馬寺</option>  
+            <option value="慈照寺（銀閣寺）">慈照寺（銀閣寺）</option>  
+            <option value="清水寺">清水寺</option>
+            <option value="八坂神社">八坂神社</option>
+            <option value="本願寺（西本願寺）">本願寺（西本願寺）</option>  
+            <option value="天龍寺">天龍寺</option>  
+            <option value="西芳寺（苔寺）">西芳寺（苔寺）</option>  
+            <option value="宇治上神社">宇治上神社</option> 
+        </select>
+        <button class="formButton" type="submit">Send</button>
+    </form>
+    
+    <div class="result">
+        <p>{{ message }}</p>
+        {% if time != "" %}
+        <p>予想合計移動時間は{{ time }}分です。</p>
+        {% endif %}
+        <ol>
+            {% for spot in result %}
+            <li>{{ spot }}</li>
+            {% endfor %}
+        </ol>
+    </div>
+    
+    {% extends "/html/map.html" %}
+
+</body>
+</html>
+</html>

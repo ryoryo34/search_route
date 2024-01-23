@@ -1,0 +1,43 @@
+body {
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    background-color: cadetblue;
+}
+
+h1 {
+    margin: 0;
+    color: aliceblue;
+    padding: 5px;
+}
+
+nav > ol > a {
+    padding: 3px;
+}
+
+h2 {
+    padding: 5px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.form__select {
+    width: 30%;
+    padding: 2px;
+}
+
+.formButton {
+    width: 50px;
+    margin: 3px;
+}
+
+.result {
+    padding: 5px;
+}

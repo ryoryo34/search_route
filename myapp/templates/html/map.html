@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sample Map</title>
+    <meta charset="utf-8" />
+    <link rel = "stylesheet" href = "https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/map.css') }}">
+    <script src = "https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+    <script>
+
+    function init() {
+    var Layer_402 = new Array();
+    const dicts = {{ select_dict | tojson}};
+    const names = {{ result | tojson}}
+
+    var map_402 = L.map('map_402').setView([35.03, 135.75], 10);
+    mapLink = '<a href="https://openstreetmap.org">OpenStreetMap</a>';
+    L.tileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; ' + mapLink,
+    maxZoom: 18
+    }).addTo(map_402);
+
+    Leaflet_Marker_402();
+
+    
+
+    function Leaflet_Marker_402()       // マーカー設置
+    {
+        var Markers_shape = new Array();
+        var Markers_shape_pos = new Array();
+        var Markers_shape_nam = new Array();
+        var Markers_shape_lnk = new Array();
+        var Markers_shape_icn = new Array();
+
+        // マーカー
+        for(i=0; i<names.length; i++){
+            console.log(names[i]);
+            Markers_shape_pos[ i] = dicts[names[i]];
+            Markers_shape_nam[ i ] = names[i];
+            Markers_shape_icn[ i ] = L.icon({
+            iconUrl: "static/icons/location.png",
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
+            popupAnchor: [0, -16]
+            })
+        }
+
+        // テキスト
+        for(i=0; i<names.length; i++){
+            Markers_shape_pos[ i+names.length] = dicts[names[i]];
+            Markers_shape_nam[ i+names.length ] = names[i];
+            Markers_shape_icn[ i+names.length ] = L.divIcon({
+            html: (i+1),
+            iconSize: [12, 12],
+            iconAnchor: [6, 12],
+            className: 'iconText'
+            })
+        }
+
+
+
+        for ( i = 0; i < Markers_shape_pos.length; i++ )
+        {
+        if( Markers_shape_pos[ i ] != null ) {
+            Markers_shape[ i ] = L.marker([ Markers_shape_pos[ i ][ 0 ], Markers_shape_pos[ i ][ 1 ] ],
+            {icon: Markers_shape_icn[ i ]});
+            Markers_shape[ i ].bindPopup(Markers_shape_nam[ i ] + "<br>" + Markers_shape_lnk[ i ]).openPopup();
+            Layer_402[ i ] = Markers_shape[ i ];
+            Layer_402[ i ].addTo(map_402);
+        }
+
+        }
+    }};
+
+    </script>
+</head>
+<body onload="init()">
+    <div id="map_402" style="width: 100%; height: 400px; border: solid 1px"></div>
+</body>
+</html>
